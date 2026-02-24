@@ -73,10 +73,18 @@ return false;
             cursor: pointer; font-size: 14px;
         }
         .dropdown-content {
-            display: none; position: absolute; background: white;
-            min-width: 120px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            border-radius: 8px; z-index: 1000; top: 40px; right: 0;
-        }
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 120px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    top: 40px;
+    right: 0;
+    padding-top: 10px; /* Görünmez köprü */
+    margin-top: -5px;  /* Boşluğu kapatır */
+}
         .dropdown-content a {
             color: #333; padding: 10px 15px; display: block;
             text-decoration: none; font-size: 14px;
