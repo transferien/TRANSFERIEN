@@ -86,9 +86,14 @@ return false;
     margin-top: -5px;  /* Boşluğu kapatır */
 }
         .dropdown-content a {
-            color: #333; padding: 10px 15px; display: block;
-            text-decoration: none; font-size: 14px;
-        }
+    color: #333;
+    padding: 10px 15px;
+    display: flex;       
+    align-items: center;  
+    gap: 10px;           
+    text-decoration: none;
+    font-size: 14px;
+}
         .dropdown-content a:hover {background: #f1f1f1;}
         .dropdown-content a.active {background: #2c4a6e; color: white;}
         .dropdown:hover .dropdown-content {display: block;}
