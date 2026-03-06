@@ -1543,7 +1543,7 @@ function changeLang(lang) {
     document.querySelectorAll('[id^="lang-"]').forEach(el => el.classList.remove('active'));
     document.getElementById('lang-' + lang).classList.add('active');
     
-  var flags = {tr: '🇹🇷 TR', en: '🇬🇧 EN', de: '🇩🇪 DE', ru: '🇷🇺 RU', es: '🇪🇸 ES'};
+var flags = {tr: '<span class="fi fi-tr"></span> TR', en: '<span class="fi fi-gb"></span> EN', de: '<span class="fi fi-de"></span> DE', ru: '<span class="fi fi-ru"></span> RU', es: '<span class="fi fi-es"></span> ES'};
     document.getElementById('lang-display').textContent = flags[lang];
     
     // Metinleri güncelle
@@ -1852,6 +1852,7 @@ document.getElementById('date').setAttribute('min', today);
                 <p>&copy; 2024 TRANSFERIEN - Tüm hakları saklıdır. | <a href="#" style="color: #d4af37; text-decoration: none;">Gizlilik Politikası</a> | <a href="#" style="color: #d4
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js"></script>
 <script>twemoji.parse(document.body);</script>                                                                                                                                                           
+
 
 
 
