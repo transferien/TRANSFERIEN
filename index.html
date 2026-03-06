@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRANSFERIEN - İstanbul & Antalya VIP Transfer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css">
     <style>
         * {margin: 0; padding: 0; box-sizing: border-box;}
         body {font-family: 'Montserrat', sans-serif; line-height: 1.6; color: #333;}
@@ -180,11 +180,11 @@
                             <span id="lang-display">🇹🇷 TR</span> ▼
                         </button>
                         <div class="dropdown-content">
-                          <a href="#" onclick="changeLang('tr'); return false;" id="lang-tr">🇹🇷 Türkçe</a>
-<a href="#" onclick="changeLang('en'); return false;" id="lang-en">🇬🇧 English</a>
-<a href="#" onclick="changeLang('de'); return false;" id="lang-de">🇩🇪 Deutsch</a>
-<a href="#" onclick="changeLang('ru'); return false;" id="lang-ru">🇷🇺 Русский</a>
-<a href="#" onclick="changeLang('es'); return false;" id="lang-es">🇪🇸 Español</a>
+ <a href="#" onclick="changeLang('tr'); return false;" id="lang-tr"><span class="fi fi-tr"></span> Türkçe</a>
+<a href="#" onclick="changeLang('en'); return false;" id="lang-en"><span class="fi fi-gb"></span> English</a>
+<a href="#" onclick="changeLang('de'); return false;" id="lang-de"><span class="fi fi-de"></span> Deutsch</a>
+<a href="#" onclick="changeLang('ru'); return false;" id="lang-ru"><span class="fi fi-ru"></span> Русский</a>
+<a href="#" onclick="changeLang('es'); return false;" id="lang-es"><span class="fi fi-es"></span> Español</a>
                         </div>
                     </div>
                 </div>
@@ -1544,7 +1544,7 @@ function changeLang(lang) {
     document.getElementById('lang-' + lang).classList.add('active');
     
 var flags = {tr: '<span class="fi fi-tr"></span> TR', en: '<span class="fi fi-gb"></span> EN', de: '<span class="fi fi-de"></span> DE', ru: '<span class="fi fi-ru"></span> RU', es: '<span class="fi fi-es"></span> ES'};
-    document.getElementById('lang-display').textContent = flags[lang];
+   document.getElementById('lang-display').innerHTML = flags[lang];
     
     // Metinleri güncelle
     if (translations[lang]) {
@@ -1852,6 +1852,7 @@ document.getElementById('date').setAttribute('min', today);
                 <p>&copy; 2024 TRANSFERIEN - Tüm hakları saklıdır. | <a href="#" style="color: #d4af37; text-decoration: none;">Gizlilik Politikası</a> | <a href="#" style="color: #d4
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js"></script>
 <script>twemoji.parse(document.body);</script>                                                                                                                                                           
+
 
 
 
