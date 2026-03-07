@@ -257,7 +257,7 @@ function gtag_report_conversion(url) {
 </div>
 
 <div class="form-group">
-    <label>Alınış Noktası (Otel veya Adres):</label>
+ <label id="label-pickup">Alınış Noktası (Otel veya Adres):</label>
     <input type="text" id="pickup_address" placeholder="Örn: Hilton Bosphorus..." style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
 </div>
 
@@ -269,7 +269,7 @@ function gtag_report_conversion(url) {
 </div>
 
 <div class="form-group">
-    <label>Varış Noktası (Otel veya Adres):</label>
+<label id="label-dropoff">Varış Noktası (Otel veya Adres):</label>
     <input type="text" id="dropoff_address" placeholder="Örn: Sabiha Gökçen Havalimanı..." style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
 </div>
                 </div>
@@ -1219,6 +1219,8 @@ var translations = {
         'label-direction': 'Yön:',
         'label-from': 'Nereden:',
         'label-to': 'Nereye:',
+     'label-pickup': 'Alınış Noktası (Otel veya Adres):',
+'label-dropoff': 'Varış Noktası (Otel veya Adres):',
         'label-date': 'Tarih:',
         'label-time': 'Saat:',
         'label-return-date': 'Dönüş Tarihi:',
@@ -1284,6 +1286,8 @@ var translations = {
         'label-direction': 'Direction:',
         'label-from': 'From:',
         'label-to': 'To:',
+     'label-pickup': 'Pickup Point (Hotel or Address):',
+'label-dropoff': 'Dropoff Point (Hotel or Address):',
         'label-date': 'Date:',
         'label-time': 'Time:',
         'label-return-date': 'Return Date:',
@@ -1352,6 +1356,8 @@ var translations = {
         'label-direction': 'Richtung:',
         'label-from': 'Von:',
         'label-to': 'Nach:',
+     'label-pickup': 'Abholort (Hotel oder Adresse):',
+'label-dropoff': 'Zielort (Hotel oder Adresse):',
         'label-date': 'Datum:',
         'label-time': 'Uhrzeit:',
         'label-return-date': 'Rückfahrt Datum:',
@@ -1420,6 +1426,8 @@ var translations = {
         'label-direction': 'Направление:',
         'label-from': 'Откуда:',
         'label-to': 'Куда:',
+     'label-pickup': 'Место посадки (Отель или Адрес):',
+'label-dropoff': 'Место высадки (Отель или Адрес):',
         'label-date': 'Дата:',
         'label-time': 'Время:',
         'label-return-date': 'Дата обратно:',
@@ -1486,6 +1494,8 @@ var translations = {
         'trip-roundtrip': 'Ida y vuelta',
         'label-city': 'Ciudad:',
         'label-direction': 'Dirección:',
+  'label-pickup': 'Punto de recogida (Hotel o Dirección):',
+'label-dropoff': 'Punto de destino (Hotel o Dirección):',
         'label-from': 'Desde:',
         'label-to': 'Hasta:',
         'label-date': 'Fecha:',
@@ -1953,4 +1963,5 @@ document.getElementById('date').setAttribute('min', today);
 
 </body>
 </html>
+
 
