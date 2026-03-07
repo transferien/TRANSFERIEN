@@ -1878,49 +1878,30 @@ document.getElementById('date').setAttribute('min', today);
 <script>twemoji.parse(document.body);</script> 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>
+
 <script>
   function initAutocomplete() {
-    // Otomatik tamamlama kutularını kur
     var inputPickup = document.getElementById('pickup_address');
     var autocompletePickup = new google.maps.places.Autocomplete(inputPickup);
 
     var inputDropoff = document.getElementById('dropoff_address');
     var autocompleteDropoff = new google.maps.places.Autocomplete(inputDropoff);
 
-    // AKILLI GİZLEME FONKSİYONU
     function toggleInputs() {
         var fromVal = document.getElementById('from').value;
         var toVal = document.getElementById('to').value;
         
-        // Nereden Havalimanı ise "Alınış Noktası" kutusunu gizle
         var pickupGroup = document.getElementById('pickup_address').parentElement;
-        if (fromVal.includes("Havalimanı") || fromVal === "") {
-            pickupGroup.style.display = 'none';
-        } else {
-            pickupGroup.style.display = 'block';
-        }
+        pickupGroup.style.display = (fromVal.includes("Havalimanı") || fromVal === "") ? 'none' : 'block';
         
-        // Nereye Havalimanı ise "Varış Noktası" kutusunu gizle
         var dropoffGroup = document.getElementById('dropoff_address').parentElement;
-        if (toVal.includes("Havalimanı") || toVal === "") {
-            dropoffGroup.style.display = 'none';
-        } else {
-            dropoffGroup.style.display = 'block';
-        }
+        dropoffGroup.style.display = (toVal.includes("Havalimanı") || toVal === "") ? 'none' : 'block';
     }
 
-    // --- KRİTİK EKSİK BURASIYDI: DİNLEYİCİLER ---
     document.getElementById('from').addEventListener('change', toggleInputs);
     document.getElementById('to').addEventListener('change', toggleInputs);
-
-    // Sayfa açıldığında ilk kontrolü yap
     toggleInputs();
   }
   
-  // Sistemi başlat
   google.maps.event.addDomListener(window, 'load', initAutocomplete);
 </script>
-
-
-
-
