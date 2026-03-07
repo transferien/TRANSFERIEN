@@ -1791,15 +1791,24 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
     }
     
     // WhatsApp mesajı
-    var msg = '*TRANSFER REZERVASYONU*%0A%0A' +
-        '👤 Ad: ' + name + '%0A' +
-        '📱 Tel: ' + phone + '%0A' +
-        '📧 Email: ' + email + '%0A' +
-        '🏙️ Şehir: ' + city + '%0A' +
-        '📍 Nereden: ' + from + '%0A' +
-        '📍 Nereye: ' + to + '%0A' +
-        '📅 Tarih: ' + date + '%0A' +
-        '🕐 Saat: ' + time + '%0A';
+   // Kutulardaki otel/adres yazılarını al
+    var pickupDetail = document.getElementById('pickup_address') ? document.getElementById('pickup_address').value : "";
+    var dropoffDetail = document.getElementById('dropoff_address') ? document.getElementById('dropoff_address').value : "";
+
+    // Dropdown ile otel adını yan yana birleştir
+    var fromText = from + (pickupDetail ? " - " + pickupDetail : "");
+    var toText = to + (dropoffDetail ? " - " + dropoffDetail : "");
+
+    // WhatsApp mesajını tam liste olarak oluştur
+    var msg = "*TRANSFER REZERVASYONU*%0A%0A" +
+      "👤 Ad: " + name + "%0A" +
+      "📞 Tel: " + phone + "%0A" +
+      "📧 Email: " + email + "%0A" +
+      "📍 Şehir: " + city + "%0A" +
+      "🔴 Nereden: " + fromText + "%0A" +
+      "🟢 Nereye: " + toText + "%0A" +
+      "📅 Tarih: " + date + "%0A" +
+      "🕒 Saat: " + time + "%0A";
     
     if (tripValue === 'roundtrip' && returnDate) {
         msg += '📅 Dönüş Tarihi: ' + returnDate + '%0A' +
@@ -1939,3 +1948,4 @@ document.getElementById('date').setAttribute('min', today);
 
 </body>
 </html>
+
