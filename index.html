@@ -1877,36 +1877,46 @@ document.getElementById('date').setAttribute('min', today);
 
   function initAutocomplete() {
     var options = { componentRestrictions: { country: "tr" } };
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>
+
+<script>
+  // KONSOLDAKİ TWEMOJI HATASINI SUSTURUR (Kodun devam etmesi için şart)
+  window.twemoji = { parse: function() {} };
+
+  function initAutocomplete() {
+    var options = { componentRestrictions: { country: "tr" } };
     
     var inputPickup = document.getElementById('pickup_address');
     var inputDropoff = document.getElementById('dropoff_address');
     var fromSelect = document.getElementById('from');
     var toSelect = document.getElementById('to');
 
-    // Google Autocomplete'i başlat
+    // Google Autocomplete'i başlat (Otel isimleri için)
     if(inputPickup) new google.maps.places.Autocomplete(inputPickup, options);
     if(inputDropoff) new google.maps.places.Autocomplete(inputDropoff, options);
 
-    // GİZLEME VE WHATSAPP VERİ KONTROLÜ
+    // KESİN GİZLEME VE WHATSAPP VERİ TAMİRİ
     function runSmartLogic() {
-        // Nereden Kontrolü
+        // NEREDEN: Havalimanı ise kutuyu gizle ve ismi WhatsApp için içine yaz
         if (fromSelect && inputPickup) {
             var fVal = fromSelect.value;
             var pWrapper = inputPickup.closest('.form-group') || inputPickup.parentElement;
             if (fVal.includes("Havalimanı") || fVal === "") {
                 pWrapper.style.setProperty('display', 'none', 'important');
-                if(inputPickup.value !== fVal) inputPickup.value = fVal; 
+                // WHATSAPP TAMİRİ: Havalimanı ismini kutuya zorla yazar
+                if(inputPickup.value !== fVal) inputPickup.value = fVal;
             } else {
                 pWrapper.style.setProperty('display', 'block', 'important');
             }
         }
 
-        // Nereye Kontrolü
+        // NEREYE: Havalimanı ise kutuyu gizle ve ismi içine yaz
         if (toSelect && inputDropoff) {
             var tVal = toSelect.value;
             var dWrapper = inputDropoff.closest('.form-group') || inputDropoff.parentElement;
             if (tVal.includes("Havalimanı") || tVal === "") {
                 dWrapper.style.setProperty('display', 'none', 'important');
+                // WHATSAPP TAMİRİ: Havalimanı ismini kutuya zorla yazar
                 if(inputDropoff.value !== tVal) inputDropoff.value = tVal;
             } else {
                 dWrapper.style.setProperty('display', 'block', 'important');
@@ -1917,11 +1927,12 @@ document.getElementById('date').setAttribute('min', today);
     if(fromSelect) fromSelect.addEventListener('change', runSmartLogic);
     if(toSelect) toSelect.addEventListener('change', runSmartLogic);
 
+    // Her yarım saniyede bir formu denetle (Bozulmayı önler)
     setInterval(runSmartLogic, 500);
     runSmartLogic();
   }
 
-  // Sayfa yüklendiğinde başlat
+  // Sistemi başlat
   google.maps.event.addDomListener(window, 'load', initAutocomplete);
 </script>
 
