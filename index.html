@@ -256,7 +256,7 @@ function gtag_report_conversion(url) {
     </select>
 </div>
 
-<div class="form-group" id="pickup-wrapper">
+<div class="form-group">
     <label>Alınış Noktası (Otel veya Adres):</label>
     <input type="text" id="pickup_address" placeholder="Örn: Hilton Bosphorus..." style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
 </div>
@@ -268,7 +268,7 @@ function gtag_report_conversion(url) {
     </select>
 </div>
 
-<div class="form-group" id="dropoff-wrapper">
+<div class="form-group">
     <label>Varış Noktası (Otel veya Adres):</label>
     <input type="text" id="dropoff_address" placeholder="Örn: Sabiha Gökçen Havalimanı..." style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
 </div>
@@ -1799,9 +1799,8 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
         '📍 Nereden: ' + from + '%0A' +
         '📍 Nereye: ' + to + '%0A' +
         '📅 Tarih: ' + date + '%0A' +
-        '🕐 Saat: ' + time + '%0A'+
-    '🏨 Alınış Adresi: ' + (document.getElementById('pickup_address').value || '-') + '%0A' +
-        '🏨 Bırakış Adresi: ' + (document.getElementById('dropoff_address').value || '-') + '%0A' +
+        '🕐 Saat: ' + time + '%0A';
+    
     if (tripValue === 'roundtrip' && returnDate) {
         msg += '📅 Dönüş Tarihi: ' + returnDate + '%0A' +
                '🕐 Dönüş Saati: ' + returnTime + '%0A';
@@ -1891,18 +1890,32 @@ document.getElementById('date').setAttribute('min', today);
     var inputDropoff = document.getElementById('dropoff_address');
     if(inputDropoff) new google.maps.places.Autocomplete(inputDropoff, options);
 
-   // AKILLI GİZLEME SİSTEMİ: Gereksiz kutuyu yok eder
-        function smartToggle() {
-            var fromVal = document.getElementById('from').value;
-            var toVal = document.getElementById('to').value;
+    // AKILLI GİZLEME SİSTEMİ: Gereksiz kutuyu yok eder
+    function smartToggle() {
+        var fromVal = document.getElementById('from').value;
+        var toVal = document.getElementById('to').value;
 
-            var pw = document.getElementById('pickup-wrapper');
-            var dw = document.getElementById('dropoff-wrapper');
-
-            if (pw) pw.style.display = (fromVal === '' || fromVal.includes('Havalimanı')) ? 'none' : 'block';
-            if (dw) dw.style.display = (toVal === '' || toVal.includes('Havalimanı')) ? 'none' : 'block';
+        // NEREDEN: Havalimanı ise yanındaki "Alınış Noktası" kutusunu GİZLE
+     var pickupField = document.getElementById('pickup_address');
+        if (pickupField) {
+            var pWrapper = pickupField.closest('.form-group') || pickupField.parentElement;
+            if (fromVal.includes("Havalimanı") || fromVal === "") {
+                pWrapper.style.display = 'none';
+            } else {
+                pWrapper.style.display = 'block';
+            }
         }
-     
+        // NEREYE: Havalimanı ise yanındaki "Varış Noktası" kutusunu GİZLE
+        var dropoffField = document.getElementById('dropoff_address');
+      var dropoffField = document.getElementById('dropoff_address');
+        if (dropoffField) {
+            var dWrapper = dropoffField.closest('.form-group') || dropoffField.parentElement;
+            if (toVal.includes("Havalimanı") || toVal === "") {
+                dWrapper.style.display = 'none';
+            } else {
+                dWrapper.style.display = 'block';
+            }
+        }
     // Seçim değiştiğinde sistemi çalıştır
     document.getElementById('from').addEventListener('change', smartToggle);
     document.getElementById('to').addEventListener('change', smartToggle);
@@ -1915,6 +1928,3 @@ document.getElementById('date').setAttribute('min', today);
   // Google sistemini başlat
   google.maps.event.addDomListener(window, 'load', initAutocomplete);
 </script>
-
-
-
