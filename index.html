@@ -1867,19 +1867,14 @@ document.getElementById('date').setAttribute('min', today);
                         <li>🌍 İstanbul & Antalya</li>
                     </ul>
                 </div>
-                <div>
-                    <h3 style="color: #d4af37; margin-bottom: 20px;" id="footer-payment-title">Güvenli Ödeme</h3>
-                    <p style="color: #ccc; line-height: 1.8;" id="footer-payment-text">💳 Nakit<br>🏦 Havale/EFT<br>💰 Online Ödeme (Yakında)</p>
-                </div>
-            </div>
-            <div style="border-top: 1px solid #333; padding-top: 20px; text-align: center; color: #999;">
-                <p>&copy; 2024 TRANSFERIEN - Tüm hakları saklıdır. | <a href="#" style="color: #d4af37; text-decoration: none;">Gizlilik Politikası</a> | <a href="#" style="color: #d4
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js"></script>
-<script>twemoji.parse(document.body);</script> 
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>
+              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>
 
 <script>
+  // twemoji hatasını susturmak için boş bir kontrol
+  if (typeof twemoji === 'undefined') {
+    var twemoji = { parse: function() {} };
+  }
+
   function initAutocomplete() {
     var options = { componentRestrictions: { country: "tr" } };
     
@@ -1888,14 +1883,16 @@ document.getElementById('date').setAttribute('min', today);
     var fromSelect = document.getElementById('from');
     var toSelect = document.getElementById('to');
 
+    // Google Autocomplete'i başlat
     if(inputPickup) new google.maps.places.Autocomplete(inputPickup, options);
     if(inputDropoff) new google.maps.places.Autocomplete(inputDropoff, options);
 
+    // GİZLEME VE WHATSAPP VERİ KONTROLÜ
     function runSmartLogic() {
+        // Nereden Kontrolü
         if (fromSelect && inputPickup) {
             var fVal = fromSelect.value;
             var pWrapper = inputPickup.closest('.form-group') || inputPickup.parentElement;
-            
             if (fVal.includes("Havalimanı") || fVal === "") {
                 pWrapper.style.setProperty('display', 'none', 'important');
                 if(inputPickup.value !== fVal) inputPickup.value = fVal; 
@@ -1904,10 +1901,10 @@ document.getElementById('date').setAttribute('min', today);
             }
         }
 
+        // Nereye Kontrolü
         if (toSelect && inputDropoff) {
             var tVal = toSelect.value;
             var dWrapper = inputDropoff.closest('.form-group') || inputDropoff.parentElement;
-            
             if (tVal.includes("Havalimanı") || tVal === "") {
                 dWrapper.style.setProperty('display', 'none', 'important');
                 if(inputDropoff.value !== tVal) inputDropoff.value = tVal;
@@ -1924,6 +1921,7 @@ document.getElementById('date').setAttribute('min', today);
     runSmartLogic();
   }
 
+  // Sayfa yüklendiğinde başlat
   google.maps.event.addDomListener(window, 'load', initAutocomplete);
 </script>
 
