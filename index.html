@@ -1877,29 +1877,22 @@ document.getElementById('date').setAttribute('min', today);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js"></script>
 <script>twemoji.parse(document.body);</script> 
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AlzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>
+
 <script>
   function initAutocomplete() {
-    // Yeni alınış kutusu
+    // Alış noktası (pickup_address) için
     var inputPickup = document.getElementById('pickup_address');
     var autocompletePickup = new google.maps.places.Autocomplete(inputPickup);
 
-    // Yeni varış kutusu
+    // Varış noktası (dropoff_address) için
     var inputDropoff = document.getElementById('dropoff_address');
     var autocompleteDropoff = new google.maps.places.Autocomplete(inputDropoff);
   }
+  
+  // Her şey hazır olduğunda sistemi başlat
   google.maps.event.addDomListener(window, 'load', initAutocomplete);
 </script>
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>                
-
-
-
-
-
-
-
-
-
-
 
 
 
