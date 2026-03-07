@@ -1880,51 +1880,52 @@ document.getElementById('date').setAttribute('min', today);
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>
 
 <script>
-  // GOOGLE'DAN BAĞIMSIZ GİZLEME SİSTEMİ (WhatsApp verisini de kurtarır)
-  function smartToggle() {
-      var fromEl = document.getElementById('from');
-      var toEl = document.getElementById('to');
-      var pickupField = document.getElementById('pickup_address');
-      var dropoffField = document.getElementById('dropoff_address');
-
-      if (fromEl && pickupField) {
-          var fVal = fromEl.value;
-          var pWrapper = pickupField.closest('.form-group') || pickupField.parentElement;
-          if (fVal.includes("Havalimanı") || fVal === "") {
-              pWrapper.style.setProperty('display', 'none', 'important');
-              // WHATSAPP DÜZELTME: Kutu gizliyken havalimanı adını içine yaz ki boş gitmesin
-              if(pickupField.value !== fVal) pickupField.value = fVal;
-          } else {
-              pWrapper.style.setProperty('display', 'block', 'important');
-          }
-      }
-
-      if (toEl && dropoffField) {
-          var tVal = toEl.value;
-          var dWrapper = dropoffField.closest('.form-group') || dropoffField.parentElement;
-          if (tVal.includes("Havalimanı") || tVal === "") {
-              dWrapper.style.setProperty('display', 'none', 'important');
-              if(dropoffField.value !== tVal) dropoffField.value = tVal;
-          } else {
-              dWrapper.style.setProperty('display', 'block', 'important');
-          }
-      }
-  }
-
-  // Google Autocomplete'i ayrıca başlat
   function initAutocomplete() {
-      var options = { componentRestrictions: { country: "tr" } };
-      var p = document.getElementById('pickup_address');
-      var d = document.getElementById('dropoff_address');
-      if(p) new google.maps.places.Autocomplete(p, options);
-      if(d) new google.maps.places.Autocomplete(d, options);
+    var options = { componentRestrictions: { country: "tr" } };
+    
+    var inputPickup = document.getElementById('pickup_address');
+    var inputDropoff = document.getElementById('dropoff_address');
+    var fromSelect = document.getElementById('from');
+    var toSelect = document.getElementById('to');
+
+    if(inputPickup) new google.maps.places.Autocomplete(inputPickup, options);
+    if(inputDropoff) new google.maps.places.Autocomplete(inputDropoff, options);
+
+    function runSmartLogic() {
+        if (fromSelect && inputPickup) {
+            var fVal = fromSelect.value;
+            var pWrapper = inputPickup.closest('.form-group') || inputPickup.parentElement;
+            
+            if (fVal.includes("Havalimanı") || fVal === "") {
+                pWrapper.style.setProperty('display', 'none', 'important');
+                if(inputPickup.value !== fVal) inputPickup.value = fVal; 
+            } else {
+                pWrapper.style.setProperty('display', 'block', 'important');
+            }
+        }
+
+        if (toSelect && inputDropoff) {
+            var tVal = toSelect.value;
+            var dWrapper = inputDropoff.closest('.form-group') || inputDropoff.parentElement;
+            
+            if (tVal.includes("Havalimanı") || tVal === "") {
+                dWrapper.style.setProperty('display', 'none', 'important');
+                if(inputDropoff.value !== tVal) inputDropoff.value = tVal;
+            } else {
+                dWrapper.style.setProperty('display', 'block', 'important');
+            }
+        }
+    }
+
+    if(fromSelect) fromSelect.addEventListener('change', runSmartLogic);
+    if(toSelect) toSelect.addEventListener('change', runSmartLogic);
+
+    setInterval(runSmartLogic, 500);
+    runSmartLogic();
   }
 
-  // Sayfa açılır açılmaz ve her yarım saniyede bir kontrol et
-  window.addEventListener('DOMContentLoaded', function() {
-      setInterval(smartToggle, 500);
-      smartToggle();
-  });
-  
   google.maps.event.addDomListener(window, 'load', initAutocomplete);
 </script>
+
+</body>
+</html>
