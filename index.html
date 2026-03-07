@@ -10,7 +10,20 @@
 
   gtag('config', 'AW-11411891140');
 </script>   <!-- Google tag (gtag.js) -->
-
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-11411891140/mh05CMn5n4QcEMTHzsEq',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRANSFERIEN - İstanbul & Antalya VIP Transfer</title>
@@ -1852,6 +1865,7 @@ document.getElementById('date').setAttribute('min', today);
                 <p>&copy; 2024 TRANSFERIEN - Tüm hakları saklıdır. | <a href="#" style="color: #d4af37; text-decoration: none;">Gizlilik Politikası</a> | <a href="#" style="color: #d4
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js"></script>
 <script>twemoji.parse(document.body);</script>                                                                                                                                                           
+
 
 
 
