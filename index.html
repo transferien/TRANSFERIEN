@@ -1883,54 +1883,52 @@ document.getElementById('date').setAttribute('min', today);
   function initAutocomplete() {
     var options = { componentRestrictions: { country: "tr" } };
     
-    // Otomatik tamamlama kutularını bağla
+    // 1. Kutuları Tanımla
     var inputPickup = document.getElementById('pickup_address');
     var inputDropoff = document.getElementById('dropoff_address');
-    
+    var fromSelect = document.getElementById('from');
+    var toSelect = document.getElementById('to');
+
+    // 2. Google Autocomplete Başlat
     if(inputPickup) new google.maps.places.Autocomplete(inputPickup, options);
     if(inputDropoff) new google.maps.places.Autocomplete(inputDropoff, options);
 
-    // AKILLI SİSTEM: Kutuları gizle ve WhatsApp verisini hazırla
-    function syncAndToggle() {
-        var fromEl = document.getElementById('from');
-        var toEl = document.getElementById('to');
-
+    // 3. AKILLI SİSTEM: Gizleme ve WhatsApp Veri Eşitleme
+    function updateFormLogic() {
         // NEREDEN Kontrolü
-        if (fromEl && inputPickup) {
-            var fromVal = fromEl.value;
+        if (fromSelect && inputPickup) {
+            var fVal = fromSelect.value;
             var pWrapper = inputPickup.closest('.form-group') || inputPickup.parentElement;
             
-            if (fromVal.includes("Havalimanı") || fromVal === "") {
+            if (fVal.includes("Havalimanı") || fVal === "") {
                 pWrapper.style.setProperty('display', 'none', 'important');
-                inputPickup.value = fromVal; // Havalimanı adını gizli kutuya yaz (WhatsApp için)
+                inputPickup.value = fVal; // WhatsApp boş gitmesin diye değeri buraya kopyala
             } else {
                 pWrapper.style.setProperty('display', 'block', 'important');
             }
         }
 
         // NEREYE Kontrolü
-        if (toEl && inputDropoff) {
-            var toVal = toEl.value;
+        if (toSelect && inputDropoff) {
+            var tVal = toSelect.value;
             var dWrapper = inputDropoff.closest('.form-group') || inputDropoff.parentElement;
             
-            if (toVal.includes("Havalimanı") || toVal === "") {
+            if (tVal.includes("Havalimanı") || tVal === "") {
                 dWrapper.style.setProperty('display', 'none', 'important');
-                inputDropoff.value = toVal; // Havalimanı adını gizli kutuya yaz (WhatsApp için)
+                inputDropoff.value = tVal; // WhatsApp boş gitmesin diye değeri buraya kopyala
             } else {
                 dWrapper.style.setProperty('display', 'block', 'important');
             }
         }
     }
 
-    // Değişiklikleri anında yakala
-    if(document.getElementById('from')) document.getElementById('from').addEventListener('change', syncAndToggle);
-    if(document.getElementById('to')) document.getElementById('to').addEventListener('change', syncAndToggle);
-
-    // Garanti çözüm: Her yarım saniyede bir kontrol et
-    setInterval(syncAndToggle, 500);
-    syncAndToggle();
+    // 4. Değişiklikleri Dinle ve Her Saniye Kontrol Et (Garanti Çözüm)
+    if(fromSelect) fromSelect.addEventListener('change', updateFormLogic);
+    if(toSelect) toSelect.addEventListener('change', updateFormLogic);
+    
+    setInterval(updateFormLogic, 500);
+    updateFormLogic();
   }
 
-  // Sistemi başlat
   google.maps.event.addDomListener(window, 'load', initAutocomplete);
 </script>
