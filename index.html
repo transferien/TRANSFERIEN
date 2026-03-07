@@ -1867,7 +1867,7 @@ document.getElementById('date').setAttribute('min', today);
                         <li>🌍 İstanbul & Antalya</li>
                     </ul>
                 </div>
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>
 
 <script>
   function initAutocomplete() {
@@ -1878,16 +1878,35 @@ document.getElementById('date').setAttribute('min', today);
     var fromSelect = document.getElementById('from');
     var toSelect = document.getElementById('to');
 
-    if(inputPickup) new google.maps.places.Autocomplete(inputPickup, options);
-    if(inputDropoff) new google.maps.places.Autocomplete(inputDropoff, options);
+    // WHATSAPP SİSTEMİNİ UYANDIRMA FONKSİYONU
+    function notifyWhatsApp(element) {
+        if(element) {
+            element.dispatchEvent(new Event('input', { bubbles: true }));
+            element.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    }
 
+    // Haritadan otel seçildiğinde WhatsApp'a haber ver
+    if(inputPickup) {
+        var autoPickup = new google.maps.places.Autocomplete(inputPickup, options);
+        autoPickup.addListener('place_changed', function() { notifyWhatsApp(inputPickup); });
+    }
+    if(inputDropoff) {
+        var autoDropoff = new google.maps.places.Autocomplete(inputDropoff, options);
+        autoDropoff.addListener('place_changed', function() { notifyWhatsApp(inputDropoff); });
+    }
+
+    // Akıllı Gizleme ve Havalimanı Verisi
     function runSmartLogic() {
         if (fromSelect && inputPickup) {
             var fVal = fromSelect.value;
             var pWrapper = inputPickup.closest('.form-group') || inputPickup.parentElement;
             if (fVal.includes("Havalimanı") || fVal === "") {
                 pWrapper.style.setProperty('display', 'none', 'important');
-                if(inputPickup.value !== fVal) inputPickup.value = fVal;
+                if(inputPickup.value !== fVal) {
+                    inputPickup.value = fVal;
+                    notifyWhatsApp(inputPickup); // Havalimanını WhatsApp'a bildir
+                }
             } else {
                 pWrapper.style.setProperty('display', 'block', 'important');
             }
@@ -1898,7 +1917,10 @@ document.getElementById('date').setAttribute('min', today);
             var dWrapper = inputDropoff.closest('.form-group') || inputDropoff.parentElement;
             if (tVal.includes("Havalimanı") || tVal === "") {
                 dWrapper.style.setProperty('display', 'none', 'important');
-                if(inputDropoff.value !== tVal) inputDropoff.value = tVal;
+                if(inputDropoff.value !== tVal) {
+                    inputDropoff.value = tVal;
+                    notifyWhatsApp(inputDropoff); // Havalimanını WhatsApp'a bildir
+                }
             } else {
                 dWrapper.style.setProperty('display', 'block', 'important');
             }
