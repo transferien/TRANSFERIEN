@@ -1799,8 +1799,9 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
         '📍 Nereden: ' + from + '%0A' +
         '📍 Nereye: ' + to + '%0A' +
         '📅 Tarih: ' + date + '%0A' +
-        '🕐 Saat: ' + time + '%0A';
-    
+        '🕐 Saat: ' + time + '%0A'+
+    '🏨 Alınış Adresi: ' + (document.getElementById('pickup_address').value || '-') + '%0A' +
+        '🏨 Bırakış Adresi: ' + (document.getElementById('dropoff_address').value || '-') + '%0A' +
     if (tripValue === 'roundtrip' && returnDate) {
         msg += '📅 Dönüş Tarihi: ' + returnDate + '%0A' +
                '🕐 Dönüş Saati: ' + returnTime + '%0A';
@@ -1914,5 +1915,6 @@ document.getElementById('date').setAttribute('min', today);
   // Google sistemini başlat
   google.maps.event.addDomListener(window, 'load', initAutocomplete);
 </script>
+
 
 
