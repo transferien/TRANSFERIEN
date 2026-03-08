@@ -314,36 +314,36 @@ function changeLang(lang) {
         }
     }; 
 
-   function changeLang(lang) { 
-var t = translations[lang];
-
-    document.getElementById('page-title').textContent = t.title;
-    document.getElementById('page-subtitle').textContent = t.subtitle;
-    document.getElementById('nav-booking').textContent = t.navBooking;
-    document.getElementById('nav-prices').textContent = t.navPrices;
-    document.getElementById('info-box-1-title').textContent = t.infoBox1Title;
-    document.getElementById('info-1-item-1').textContent = t.info1Item1;
-    document.getElementById('info-1-item-2').textContent = t.info1Item2;
-    document.getElementById('info-1-item-3').textContent = t.info1Item3;
-    document.getElementById('info-1-item-4').textContent = t.info1Item4;
-    document.getElementById('info-1-item-5').textContent = t.info1Item5;
-    document.getElementById('city-istanbul').textContent = t.cityIstanbul;
-    document.getElementById('airport-ist').textContent = t.airportIst;
-    document.getElementById('airport-saw').textContent = t.airportSaw;
-    document.getElementById('city-antalya').textContent = t.cityAntalya;
-    document.getElementById('airport-ayt').textContent = t.airportAyt;
-    ['ist', 'saw', 'ayt'].forEach(function(code) {
-        document.getElementById('th-region-' + code).textContent = t.thRegion;
-        document.getElementById('th-1-5-' + code).textContent = t.th1to5;
-        document.getElementById('th-6-15-' + code).textContent = t.th6to15;
-        document.getElementById('th-16-19-' + code).textContent = t.th16to19;
-    });
-    document.getElementById('info-box-2-title').textContent = t.infoBox2Title;
-    document.getElementById('info-2-item-1').textContent = t.info2Item1;
-    document.getElementById('info-2-item-2').textContent = t.info2Item2;
-    document.getElementById('info-2-item-3').textContent = t.info2Item3;
+   function changeLang(lang) {
+        var t = translations[lang];
+        document.getElementById('page-title').textContent = t.title;
+        document.getElementById('page-subtitle').textContent = t.subtitle;
+        document.getElementById('nav-booking').textContent = t.navBooking;
+        document.getElementById('nav-prices').textContent = t.navPrices;
+        document.getElementById('info-box-1-title').textContent = t.infoBox1Title;
+        document.getElementById('info-1-item-1').textContent = t.infoItem1;
+        document.getElementById('info-1-item-2').textContent = t.infoItem2;
+        document.getElementById('info-1-item-3').textContent = t.infoItem3;
+        document.getElementById('info-1-item-4').textContent = t.infoItem4;
+        document.getElementById('info-1-item-5').textContent = t.infoItem5;
+        document.getElementById('city-istanbul').textContent = t.cityIstanbul;
+        document.getElementById('airport-ist').textContent = t.airportIst;
+        document.getElementById('airport-saw').textContent = t.airportSaw;
+        document.getElementById('city-antalya').textContent = t.cityAntalya;
+        document.getElementById('airport-ayt').textContent = t.airportAyt;
+        ['ist', 'saw', 'ayt'].forEach(function(code) {
+            document.getElementById('th-region-' + code).textContent = t.thRegion;
+            document.getElementById('th-1-5-' + code).textContent = t.th1to5;
+            document.getElementById('th-6-15-' + code).textContent = t.th6to15;
+            document.getElementById('th-16-19-' + code).textContent = t.th16to19;
+        });
+        document.getElementById('info-box-2-title').textContent = t.infoBox2Title;
+        document.getElementById('info-2-item-1').textContent = t.info2Item1;
+        document.getElementById('info-2-item-2').textContent = t.info2Item2;
+        document.getElementById('info-2-item-3').textContent = t.info2Item3;
+        localStorage.setItem('language', lang);
+        renderPrices();
    }
-
 function renderPrices() {
     var symbol = currentCurrency === 'EUR' ? '€' : currentCurrency === 'USD' ? '$' : '₺';
     var rate = rates[currentCurrency];
