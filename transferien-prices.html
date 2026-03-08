@@ -312,10 +312,11 @@ function changeLang(lang) {
             infoBox2Title: '💰 Opciones de pago',
             info2Item1: 'Efectivo (EUR, USD, TRY)', info2Item2: 'Transferencia bancaria', info2Item3: 'Pago online (próximamente)'
         }
-    }; 
+    };
 
-function changeLang(lang) {
+    function changeLang(lang) {
         var t = translations[lang];
+        if (!t) return;
         document.getElementById('page-title').textContent = t.title;
         document.getElementById('page-subtitle').textContent = t.subtitle;
         document.getElementById('nav-booking').textContent = t.navBooking;
@@ -331,11 +332,11 @@ function changeLang(lang) {
         document.getElementById('airport-saw').textContent = t.airportSaw;
         document.getElementById('city-antalya').textContent = t.cityAntalya;
         document.getElementById('airport-ayt').textContent = t.airportAyt;
-        ['ist', 'saw', 'ayt'].forEach(function(code) {
-            document.getElementById('th-region-' + code).textContent = t.thRegion;
-            document.getElementById('th-1-5-' + code).textContent = t.th1to5;
-            document.getElementById('th-6-15-' + code).textContent = t.th6to15;
-            document.getElementById('th-16-19-' + code).textContent = t.th16to19;
+        ['ist','saw','ayt'].forEach(function(code){
+            document.getElementById('th-region-'+code).textContent = t.thRegion;
+            document.getElementById('th-1-5-'+code).textContent = t.th1to5;
+            document.getElementById('th-6-15-'+code).textContent = t.th6to15;
+            document.getElementById('th-16-19-'+code).textContent = t.th16to19;
         });
         document.getElementById('info-box-2-title').textContent = t.infoBox2Title;
         document.getElementById('info-2-item-1').textContent = t.info2Item1;
@@ -343,29 +344,29 @@ function changeLang(lang) {
         document.getElementById('info-2-item-3').textContent = t.info2Item3;
         localStorage.setItem('language', lang);
         renderPrices();
-   }
-function renderPrices() {
-    var symbol = currentCurrency === 'EUR' ? '€' : currentCurrency === 'USD' ? '$' : '₺';
-    var rate = rates[currentCurrency];
+    }
 
-    ['ist-prices', 'saw-prices', 'ayt-prices'].forEach(function(tbodyId, i) {
-        var airport = ['Istanbul Airport', 'Sabiha Gokcen Airport', 'Antalya Airport'][i];
-        var html = '';
-        for (var loc in priceData[airport]) {
-            var p = priceData[airport][loc];
-            html += '<tr><td class="location">' + loc + '</td>' +
-                '<td class="price">' + symbol + Math.round(p[0] * rate) + '</td>' +
-                '<td class="price">' + symbol + Math.round(p[1] * rate) + '</td>' +
-                '<td class="price">' + symbol + Math.round(p[2] * rate) + '</td></tr>';
-        }
-        document.getElementById(tbodyId).innerHTML = html;
-    });
-}
+    function renderPrices() {
+        var symbol = currentCurrency === 'EUR' ? '€' : currentCurrency === 'USD' ? '$' : '₺';
+        var rate = rates[currentCurrency];
+        ['ist-prices','saw-prices','ayt-prices'].forEach(function(tbodyId, i) {
+            var airport = ['Istanbul Airport','Sabiha Gokcen Airport','Antalya Airport'][i];
+            var html = '';
+            for (var loc in priceData[airport]) {
+                var p = priceData[airport][loc];
+                html += '<tr><td class="location">'+loc+'</td>'+
+                    '<td class="price">'+symbol+Math.round(p[0]*rate)+'</td>'+
+                    '<td class="price">'+symbol+Math.round(p[1]*rate)+'</td>'+
+                    '<td class="price">'+symbol+Math.round(p[2]*rate)+'</td></tr>';
+            }
+            document.getElementById(tbodyId).innerHTML = html;
+        });
+    }
 
-var savedCurr = localStorage.getItem('currency') || 'EUR';
-var savedLang = localStorage.getItem('language') || 'tr';
-changeCurr(savedCurr);
-changeLang(savedLang);
-    </script>
+    var savedCurr = localStorage.getItem('currency') || 'EUR';
+    var savedLang = localStorage.getItem('language') || 'tr';
+    changeCurr(savedCurr);
+    changeLang(savedLang);
+</script>
 </body>
 </html>
