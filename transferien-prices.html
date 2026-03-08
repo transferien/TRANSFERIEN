@@ -314,7 +314,7 @@ function changeLang(lang) {
         }
     }; 
 
-    var t = translations[lang];
+   var t = translations[lang]; → function changeLang(lang) { 
     document.getElementById('page-title').textContent = t.title;
     document.getElementById('page-subtitle').textContent = t.subtitle;
     document.getElementById('nav-booking').textContent = t.navBooking;
@@ -340,6 +340,7 @@ function changeLang(lang) {
     document.getElementById('info-2-item-1').textContent = t.info2Item1;
     document.getElementById('info-2-item-2').textContent = t.info2Item2;
     document.getElementById('info-2-item-3').textContent = t.info2Item3;
+}
 }
 
 function renderPrices() {
