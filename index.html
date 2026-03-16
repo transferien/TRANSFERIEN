@@ -2428,7 +2428,7 @@ document.getElementById('date').setAttribute('min', today);
                     <h3 style="color: #d4af37; margin-bottom: 20px;" id="footer-contact-title">İletişim</h3>
                     <ul style="list-style: none; line-height: 2.2; color: #ccc;">
                         <li>📱 +90 536 593 07 38</li>
-              <li>📩 <a href="#" onclick="this.href='mailto:info@transferien.com'; return true;" style="color: #ccc; text-decoration: none;"><span class="__cf_email__" data-cfemail="a1c8cfc7cee1d5d3c0cfd2c7c4d3c8c4cf8fc2cecc">[email&#160;protected]</span></a></li>
+              <li>📩 <a id="footer-email" href="#" style="color: #ccc; text-decoration: none;">info@transferien.com</a></li>
                         <li>⏰ <span id="footer-service">7/24 Hizmet</span></li>
                         <li>🌍 İstanbul & Antalya</li>
                     </ul>
@@ -2533,5 +2533,12 @@ document.getElementById('date').setAttribute('min', today);
 }
 </script>
 
+
+<script>
+(function(){
+    var e = document.getElementById('footer-email');
+    if(e){ var u='info',d='transferien.com'; e.href='mai'+'lto:'+u+'@'+d; e.textContent=u+'@'+d; }
+})();
+</script>
 </body>
 </html>
