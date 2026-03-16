@@ -26,7 +26,7 @@ function gtag_report_conversion(url) {
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRANSFERIEN - İstanbul & Antalya VIP Transfer</title>
+    <title>TRANSFERIEN | İstanbul & Antalya VIP Transfer | Havalimanı Transferi</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css">
     <style>
         * {margin: 0; padding: 0; box-sizing: border-box;}
@@ -84,48 +84,153 @@ function gtag_report_conversion(url) {
         .dropdown-content a.active {background: #2c4a6e; color: white;}
         .dropdown:hover .dropdown-content {display: block;}
         
-        .hero {background: white; padding: 25px 20px 40px; text-align: center;}
+        .hero {background: #f8f9fa; padding: 25px 20px 40px; text-align: center;}
         .hero h1 {font-size: 2.5rem; color: #2c4a6e; margin-bottom: 15px;}
         .hero p {font-size: 1.2rem; color: #555;}
         
-        .booking-section {background: #f8f9fa; padding: 60px 20px;}
+        .booking-section {
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+            background: #0a0f1a;
+        }
+        .booking-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10,15,26,0.90) 0%, rgba(44,74,110,0.72) 50%, rgba(10,15,26,0.90) 100%),
+                url('https://images.pexels.com/photos/3806517/pexels-photo-3806517.jpeg') center/cover no-repeat;
+            z-index: 0;
+        }
+        .booking-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(212,175,55,0.03) 60px, rgba(212,175,55,0.03) 61px);
+            z-index: 0;
+        }
         .booking-card {
-            background: white; max-width: 800px; margin: 0 auto;
-            padding: 40px; border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212,175,55,0.25);
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
         }
-        .booking-card h2 {text-align: center; color: #2c4a6e; margin-bottom: 30px;}
-        
-        .form-row {display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;}
-        .form-group {margin-bottom: 20px;}
-        .form-group label {display: block; margin-bottom: 8px; font-weight: 600;}
-        .form-group select, .form-group input {
-            width: 100%; padding: 12px; border: 2px solid #e0e0e0;
-            border-radius: 8px; font-size: 16px;
+        .booking-card h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: white;
+            letter-spacing: 0.01em;
+        }
+        .booking-card h2 span { color: #d4af37; }
+        .booking-section-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.45);
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .form-row {display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;}
+        .form-group {margin-bottom: 16px;}
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 0.75rem;
+            color: rgba(212,175,55,0.85);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .form-group select, .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            font-size: 15px;
+            color: white;
             font-family: 'Montserrat', sans-serif;
+            outline: none;
+            transition: all 0.3s;
+            appearance: none;
+            -webkit-appearance: none;
         }
-        
-        .trip-type {display: flex; gap: 20px; margin-bottom: 30px;}
-        .trip-type label {
-            flex: 1; text-align: center; cursor: pointer;
+        .form-group select:focus, .form-group input:focus, .form-group textarea:focus {
+            border-color: rgba(212,175,55,0.55);
+            background: rgba(255,255,255,0.10);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.12);
+        }
+        .form-group select option { background: #1a2535; color: white; }
+        .form-group textarea { resize: vertical; }
+
+        .trip-type {display: flex; gap: 8px; margin-bottom: 24px; background: rgba(0,0,0,0.3); border-radius: 12px; padding: 4px;}
+        .trip-type label { flex: 1; text-align: center; cursor: pointer; }
+        .trip-type label span {
+            display: block;
+            padding: 12px;
+            border-radius: 9px;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.45);
+            transition: all 0.3s;
         }
         .trip-type input:checked + span {
-            background: linear-gradient(135deg, #2c4a6e 0%, #3a5f8a 100%);
-            color: white; border-color: #2c4a6e;
+            background: linear-gradient(135deg, #2c4a6e, #3a5f8a);
+            color: #d4af37;
+            box-shadow: 0 4px 15px rgba(44,74,110,0.5);
         }
-        
+
         .price-display {
-            background: linear-gradient(135deg, #2c4a6e 0%, #3a5f8a 100%);
-            color: white; padding: 30px; border-radius: 10px;
-            text-align: center; margin: 30px 0;
+            background: linear-gradient(135deg, #2c4a6e, #1a2f48);
+            border: 1px solid rgba(212,175,55,0.35);
+            color: white;
+            padding: 24px;
+            border-radius: 14px;
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
         }
-        .price-display h3 {font-size: 3rem; margin-bottom: 10px;}
-        
+        .price-display::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 60%);
+        }
+        .price-display h3 {font-size: 3rem; margin-bottom: 6px; position: relative;}
+        .price-display p {position: relative; color: rgba(255,255,255,0.55); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;}
+
         .submit-btn {
             width: 100%;
-            background: linear-gradient(135deg, #2c4a6e 0%, #3a5f8a 100%);
-            color: white; padding: 18px; border: none; border-radius: 8px;
-            font-size: 1.2rem; font-weight: 600; cursor: pointer;
+            background: linear-gradient(135deg, #d4af37, #b8942a);
+            color: #0a0f1a;
+            padding: 17px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(212,175,55,0.3);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(212,175,55,0.45);
         }
         
         .whatsapp-float {
@@ -138,31 +243,248 @@ function gtag_report_conversion(url) {
         }
         .whatsapp-float svg {width: 35px; height: 35px; fill: white;}
         
+
+        /* Hamburger Menu */
+        .hamburger-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white; padding: 8px 13px; border-radius: 8px;
+            cursor: pointer; font-size: 18px; line-height: 1;
+        }
+        .hamburger-menu {
+            display: none;
+            position: fixed;
+            top: 0; right: 0;
+            width: 280px; height: 100vh;
+            background: #1a2942;
+            z-index: 9999;
+            padding: 60px 30px 30px;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+            overflow-y: auto;
+        }
+        .hamburger-menu.open { display: block; }
+        .hamburger-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 9998;
+        }
+        .hamburger-overlay.open { display: block; }
+        .hamburger-close {
+            position: absolute; top: 15px; right: 20px;
+            background: none; border: none; color: white;
+            font-size: 28px; cursor: pointer;
+        }
+        .hamburger-menu a {
+            display: block; color: white; text-decoration: none;
+            padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 16px; font-weight: 500;
+            transition: color 0.2s;
+        }
+        .hamburger-menu a:hover { color: #d4af37; }
+        .hamburger-menu a span { margin-right: 12px; }
         @media (max-width: 768px) {
             .form-row {grid-template-columns: 1fr;}
             .nav-container {flex-direction: column; gap: 15px;}
         }
     </style>
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics (GA4) -->
+    <!-- NOT: Gerçek Google Analytics ID'nizi buraya ekleyin: G-XXXXXXXXXX -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX'); // Buraya Google Analytics ID'nizi yazın
+        gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- SEO META TAGS                                              -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Temel SEO -->
+    <meta name="description" content="İstanbul ve Antalya havalimanı VIP transfer hizmeti. IST, SAW, AYT havalimanları için Mercedes Vito ve Sprinter araçlarla güvenli, konforlu, profesyonel transfer. 7/24 hizmet, sabit fiyat garantisi.">
+    <meta name="keywords" content="istanbul transfer, antalya transfer, havalimanı transferi, vip transfer, ist transfer, saw transfer, ayt transfer, istanbul airport transfer, antalya airport transfer, mercedes vito transfer, havalimanı taksi, sabiha gökçen transfer, atatürk havalimanı transfer, hotel transfer istanbul, hotel transfer antalya, transferien, 7/24 transfer">
+    <meta name="author" content="TRANSFERIEN">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://transferien.com/">
+    <link rel="sitemap" type="application/xml" href="https://transferien.com/sitemap.xml">
+
+    <!-- Hreflang (Çok Dilli SEO) -->
+    <link rel="alternate" hreflang="tr" href="https://transferien.com/">
+    <link rel="alternate" hreflang="en" href="https://transferien.com/?lang=en">
+    <link rel="alternate" hreflang="de" href="https://transferien.com/?lang=de">
+    <link rel="alternate" hreflang="ru" href="https://transferien.com/?lang=ru">
+    <link rel="alternate" hreflang="es" href="https://transferien.com/?lang=es">
+    <link rel="alternate" hreflang="x-default" href="https://transferien.com/">
+
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://transferien.com/">
+    <meta property="og:site_name" content="TRANSFERIEN">
+    <meta property="og:title" content="TRANSFERIEN | İstanbul & Antalya VIP Havalimanı Transferi">
+    <meta property="og:description" content="İstanbul ve Antalya'da güvenilir VIP havalimanı transfer hizmeti. Mercedes araçlar, profesyonel sürücüler, 7/24 hizmet, sabit fiyat garantisi.">
+    <meta property="og:image" content="https://transferien.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="TRANSFERIEN - VIP Havalimanı Transfer Hizmeti">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <meta property="og:locale:alternate" content="es_ES">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@transferien">
+    <meta name="twitter:creator" content="@transferien">
+    <meta name="twitter:title" content="TRANSFERIEN | İstanbul & Antalya VIP Havalimanı Transferi">
+    <meta name="twitter:description" content="İstanbul ve Antalya'da güvenilir VIP havalimanı transfer hizmeti. Mercedes araçlar, 7/24 hizmet, sabit fiyat garantisi.">
+    <meta name="twitter:image" content="https://transferien.com/og-image.jpg">
+    <meta name="twitter:image:alt" content="TRANSFERIEN - VIP Havalimanı Transfer Hizmeti">
+
+    <!-- Ek Mobil & Tarayıcı Optimizasyonları -->
+    <meta name="theme-color" content="#2c4a6e">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="TRANSFERIEN">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=yes">
+
+    <!-- Schema.org Yapısal Veri (Google Zengin Sonuçlar) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "TRANSFERIEN",
+      "url": "https://transferien.com",
+      "logo": "https://transferien.com/favicon.png",
+      "image": "https://transferien.com/og-image.jpg",
+      "description": "İstanbul ve Antalya havalimanlarında VIP transfer hizmeti. Mercedes Vito ve Sprinter araçlarla 7/24 güvenli, konforlu transfer.",
+      "telephone": "+905365930738",
+      "email": "info@transferien.com",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "İstanbul",
+          "addressCountry": "TR"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Antalya",
+          "addressCountry": "TR"
+        }
+      ],
+      "geo": [
+        {
+          "@type": "GeoCoordinates",
+          "latitude": "41.0082",
+          "longitude": "28.9784"
+        }
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR, USD, TRY",
+      "paymentAccepted": "Cash, Credit Card",
+      "areaServed": [
+        {"@type": "City", "name": "İstanbul"},
+        {"@type": "City", "name": "Antalya"}
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Transfer Hizmetleri",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "İstanbul IST Havalimanı Transferi",
+              "description": "İstanbul Atatürk / İstanbul Havalimanı VIP transfer – Vito €45"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "İstanbul SAW Havalimanı Transferi",
+              "description": "Sabiha Gökçen Havalimanı VIP transfer – Vito €60"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Antalya AYT Havalimanı Transferi",
+              "description": "Antalya Havalimanı bölgesel VIP transfer hizmeti"
+            }
+          }
+        ]
+      },
+      "sameAs": [
+        "https://www.instagram.com/transferien",
+        "https://www.facebook.com/transferien"
+      ]
+    }
     </script>
 
-    <!-- Meta Tags for SEO -->
-    <meta name="description" content="İstanbul ve Antalya havalimanı VIP transfer hizmeti. Mercedes Vito, Sprinter ile güvenli, konforlu transfer. 7/24 hizmet, profesyonel sürücüler.">
-    <meta name="keywords" content="istanbul transfer, antalya transfer, havalimanı transferi, vip transfer, ist transfer, saw transfer, ayt transfer">
-    <meta name="author" content="TRANSFERIEN">
-    <meta property="og:title" content="TRANSFERIEN - İstanbul & Antalya VIP Transfer">
-    <meta property="og:description" content="Güvenilir havalimanı transfer hizmeti. Mercedes araçlar, profesyonel sürücüler, 7/24 hizmet.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://transferien.com">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <!-- BreadcrumbList Yapısal Verisi -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://transferien.com/"
+        }
+      ]
+    }
+    </script>
+
+    <!-- FAQ Yapısal Verisi -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Havalimanı transferi fiyatları nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "İstanbul IST (İstanbul Havalimanı) Vito transferi €45, SAW (Sabiha Gökçen) Vito transferi €60'tan başlamaktadır. Antalya transferleri bölgeye göre değişmektedir. Gidiş-dönüş indirimi uygulanmaktadır."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Transfer rezervasyonu nasıl yapılır?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sayfamızdaki rezervasyon formunu doldurup WhatsApp üzerinden anında onay alabilirsiniz. 7/24 hizmet vermekteyiz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hangi araçlarla hizmet veriyorsunuz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mercedes Vito (1-7 kişi) ve Mercedes Sprinter (8-16 kişi) araçlarımızla VIP transfer hizmeti sunuyoruz."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
 </head>
 <body>
     <header class="header">
@@ -200,10 +522,23 @@ function gtag_report_conversion(url) {
 <a href="#" onclick="changeLang('es'); return false;" id="lang-es"><span class="fi fi-es"></span> Español</a>
                         </div>
                     </div>
+                    <button class="hamburger-btn" onclick="toggleMenu()">☰</button>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Hamburger overlay -->
+    <div class="hamburger-overlay" id="hamburger-overlay" onclick="toggleMenu()"></div>
+    <!-- Hamburger menu -->
+    <div class="hamburger-menu" id="hamburger-menu">
+        <button class="hamburger-close" onclick="toggleMenu()">✕</button>
+        <a href="#booking" onclick="toggleMenu()"><span>📋</span><span id="hm-booking">Rezervasyon</span></a>
+        <a href="transferien-prices.html"><span>💰</span><span id="hm-prices">Fiyatlar</span></a>
+        <a href="#about-title" onclick="toggleMenu()"><span>ℹ️</span><span id="hm-about">Hakkımızda</span></a>
+        <a href="#slider-title" onclick="toggleMenu()"><span>✈️</span><span id="hm-how">Nasıl Çalışıyoruz?</span></a>
+        <a href="#faq-title" onclick="toggleMenu()"><span>❓</span><span id="hm-faq">Sıkça Sorulan Sorular</span></a>
+    </div>
 
     <a href="https://wa.me/905365930738" class="whatsapp-float" target="_blank" onclick="return gtag_report_conversion('https://wa.me/905365930738');">
         <svg viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.135-2.135c2.369 1.228 5.020 1.885 7.865 1.885 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.25c-2.475 0-4.853-0.655-6.965-1.904l-0.5-0.277-5.365 1.407 1.415-5.275-0.306-0.519c-1.391-2.359-2.129-5.059-2.129-7.807 0-7.444 6.056-13.5 13.5-13.5s13.5 6.056 13.5 13.5-6.056 13.5-13.5 13.5zM22.438 18.938c-0.363-0.181-2.15-1.059-2.484-1.181-0.334-0.119-0.575-0.181-0.819 0.181s-0.941 1.181-1.153 1.425c-0.212 0.244-0.425 0.275-0.788 0.094s-1.537-0.566-2.925-1.806c-1.081-0.966-1.813-2.156-2.025-2.519s-0.022-0.559 0.159-0.741c0.166-0.163 0.363-0.425 0.544-0.637s0.244-0.363 0.363-0.606c0.119-0.244 0.059-0.456-0.031-0.637s-0.819-1.975-1.122-2.7c-0.3-0.712-0.606-0.619-0.819-0.631-0.212-0.012-0.456-0.012-0.7-0.012s-0.637 0.094-0.972 0.456c-0.334 0.363-1.272 1.244-1.272 3.031s1.303 3.519 1.484 3.759c0.181 0.244 2.541 3.881 6.156 5.441 0.859 0.372 1.531 0.594 2.053 0.759 0.863 0.275 1.647 0.237 2.269 0.144 0.694-0.103 2.15-0.878 2.453-1.728s0.303-1.575 0.212-1.728c-0.091-0.15-0.334-0.244-0.697-0.425z"/></svg>
@@ -216,16 +551,17 @@ function gtag_report_conversion(url) {
 
     <section class="booking-section" id="booking">
         <div class="booking-card">
-            <h2 id="booking-title">Rezervasyon Yapın</h2>
+            <h2 id="booking-title">Rezervasyon <span>Yapın</span></h2>
+            <p class="booking-section-subtitle">VIP Transfer Hizmeti</p>
             
             <div class="trip-type">
                 <label>
                     <input type="radio" name="trip" value="oneway" checked style="display:none">
-                    <span style="display:block; padding:15px; border:2px solid #e0e0e0; border-radius:8px;" id="trip-oneway">Tek Yön</span>
+                    <span id="trip-oneway">Tek Yön</span>
                 </label>
                 <label>
                     <input type="radio" name="trip" value="roundtrip" style="display:none">
-                    <span style="display:block; padding:15px; border:2px solid #e0e0e0; border-radius:8px;" id="trip-roundtrip">Gidiş-Dönüş</span>
+                    <span id="trip-roundtrip">Gidiş-Dönüş</span>
                 </label>
             </div>
 
@@ -249,29 +585,40 @@ function gtag_report_conversion(url) {
                 </div>
 
                 <div class="form-row">
-<div class="form-group">
-    <label id="label-from">Nereden (Bölge/Havalimanı):</label>
-    <select id="from" required>
-        <option value="" id="opt-select-from">Önce şehir seçin</option>
-    </select>
-</div>
+                    <div class="form-group">
+                        <label id="label-from">Nereden:</label>
+                        <select id="from" required>
+                            <option value="" id="opt-select-from">Önce şehir seçin</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="to-select-group">
+                        <label id="label-to">Nereye:</label>
+                        <select id="to" required>
+                            <option value="" id="opt-select-to">Önce şehir seçin</option>
+                        </select>
+                    </div>
+                </div>
 
-<div class="form-group">
- <label id="label-pickup">Alınış Noktası (Otel veya Adres):</label>
-    <input type="text" id="pickup_address" placeholder="Örn: Hilton Bosphorus..." style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-</div>
+                <!-- İstanbul için otel/adres kutusu (sadece İstanbul seçilince görünür) -->
+                <div class="form-group" id="istanbul-address-group" style="display:none;">
+                    <label id="label-istanbul-address">Otel veya Adres:</label>
+                    <input type="text" id="istanbul_address" placeholder="Örn: Hilton İstanbul Bomonti...">
+                </div>
 
-<div class="form-group">
-    <label id="label-to">Nereye (Bölge/Havalimanı):</label>
-    <select id="to" required>
-        <option value="" id="opt-select-to">Önce şehir seçin</option>
-    </select>
-</div>
+                <!-- Antalya otel/adres kutusu -->
+                <div class="form-group" id="antalya-address-group" style="display:none;">
+                    <label id="label-antalya-address">Otel veya Adres:</label>
+                    <input type="text" id="antalya_address" placeholder="Örn: Rixos Premium Belek...">
+                </div>
 
-<div class="form-group">
-<label id="label-dropoff">Varış Noktası (Otel veya Adres):</label>
-    <input type="text" id="dropoff_address" placeholder="Örn: Sabiha Gökçen Havalimanı..." style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-</div>
+                <!-- Antalya için mevcut pickup/dropoff kutuları -->
+                <div class="form-group" id="pickup-wrapper">
+                    <label id="label-pickup">Alınış Noktası (Otel veya Adres):</label>
+                    <input type="text" id="pickup_address" placeholder="Örn: Hilton Bosphorus...">
+                </div>
+                <div class="form-group" id="dropoff-wrapper">
+                    <label id="label-dropoff">Varış Noktası (Otel veya Adres):</label>
+                    <input type="text" id="dropoff_address" placeholder="Örn: Sabiha Gökçen Havalimanı...">
                 </div>
 
                 <div class="form-row">
@@ -331,7 +678,7 @@ function gtag_report_conversion(url) {
 
                 <div class="form-group">
                     <label id="label-notes">Notlar (Opsiyonel):</label>
-                    <textarea id="notes" rows="3" style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; font-family: 'Montserrat', sans-serif; resize: vertical;" placeholder="Uçuş numarası, bebek koltuğu, özel istekler vb."></textarea>
+                    <textarea id="notes" rows="3" placeholder="Uçuş numarası, bebek koltuğu, özel istekler vb."></textarea>
                 </div>
 
                 <button type="submit" class="submit-btn" id="submit-btn" id="submit-btn">WhatsApp ile Rezervasyon Talebi Gönder</button>
@@ -1132,50 +1479,10 @@ var rates = {EUR: 1, USD: 1.10, TRY: 52.00}; // Güncel kurlar - Manuel güncell
 var priceData = {
     istanbul: {
         'Istanbul Airport': {
-            'Fatih': [45, 60, 70],
-            'Sultanahmet': [45, 60, 70],
-            'Ayasofya': [45, 60, 70],
-            'Balat': [45, 60, 70],
-            'Sisli': [45, 60, 70],
-            'Karakoy': [45, 60, 70],
-            'Galata': [45, 60, 70],
-            'Taksim': [45, 60, 70],
-            'Besiktas': [45, 60, 70],
-            'Ortakoy': [45, 60, 70],
-            'Eminonu': [45, 60, 70],
-            'Sirkeci': [45, 60, 70],
-            'Laleli': [45, 60, 70],
-            'Beyoglu': [45, 60, 70],
-            'Nisantasi': [45, 60, 70],
-            'Aksaray': [45, 60, 70],
-            'Cihangir': [45, 60, 70],
-            'Pera': [45, 60, 70],
-            'Mecidiyekoy': [45, 60, 70],
-            'Zeytinburnu': [45, 60, 70],
-            'Bakirkoy': [45, 60, 70]
+            'Tüm İstanbul Bölgeleri': [45, 60, 70]
         },
         'Sabiha Gokcen Airport': {
-            'Fatih': [60, 75, 85],
-            'Sultanahmet': [60, 75, 85],
-            'Ayasofya': [60, 75, 85],
-            'Balat': [60, 75, 85],
-            'Sisli': [60, 75, 85],
-            'Karakoy': [60, 75, 85],
-            'Galata': [60, 75, 85],
-            'Taksim': [60, 75, 85],
-            'Besiktas': [60, 75, 85],
-            'Ortakoy': [60, 75, 85],
-            'Eminonu': [60, 75, 85],
-            'Sirkeci': [60, 75, 85],
-            'Laleli': [60, 75, 85],
-            'Beyoglu': [60, 75, 85],
-            'Nisantasi': [60, 75, 85],
-            'Aksaray': [60, 75, 85],
-            'Cihangir': [60, 75, 85],
-            'Pera': [60, 75, 85],
-            'Mecidiyekoy': [60, 75, 85],
-            'Zeytinburnu': [60, 75, 85],
-            'Bakirkoy': [60, 75, 85]
+            'Tüm İstanbul Bölgeleri': [60, 75, 85]
         }
     },
     antalya: {
@@ -1219,6 +1526,8 @@ var translations = {
         'label-direction': 'Yön:',
         'label-from': 'Nereden:',
         'label-to': 'Nereye:',
+     'label-from': 'Nereden:',
+     'label-istanbul-address': 'Otel veya Adres:',
      'label-pickup': 'Alınış Noktası (Otel veya Adres):',
 'label-dropoff': 'Varış Noktası (Otel veya Adres):',
         'label-date': 'Tarih:',
@@ -1234,6 +1543,10 @@ var translations = {
         'submit-btn': 'WhatsApp ile Rezervasyon Talebi Gönder',
         'nav-booking': 'Rezervasyon',
         'nav-prices': 'Fiyatlar',
+        'footer-nav-booking': 'Rezervasyon',
+        'footer-nav-prices': 'Fiyatlar',
+        'hm-booking': 'Rezervasyon', 'hm-prices': 'Fiyatlar', 'hm-about': 'Hakkımızda', 'hm-how': 'Nasıl Çalışıyoruz?', 'hm-faq': 'SSS',
+        'label-antalya-address': 'Otel veya Adres:',
         'nav-about': 'Hakkımızda',
         'nav-faq': 'SSS',
         'opt-select-city': 'Seçiniz',
@@ -1286,6 +1599,8 @@ var translations = {
         'label-direction': 'Direction:',
         'label-from': 'From:',
         'label-to': 'To:',
+     'label-from': 'From:',
+     'label-istanbul-address': 'Hotel or Address:',
      'label-pickup': 'Pickup Point (Hotel or Address):',
 'label-dropoff': 'Dropoff Point (Hotel or Address):',
         'label-date': 'Date:',
@@ -1301,6 +1616,10 @@ var translations = {
         'submit-btn': 'Send Reservation Request via WhatsApp',
         'nav-booking': 'Booking',
         'nav-prices': 'Prices',
+        'footer-nav-booking': 'Booking',
+        'footer-nav-prices': 'Prices',
+        'hm-booking': 'Booking', 'hm-prices': 'Prices', 'hm-about': 'About Us', 'hm-how': 'How It Works', 'hm-faq': 'FAQ',
+        'label-antalya-address': 'Hotel or Address:',
         'nav-about': 'About Us',
         'nav-faq': 'FAQ',
         'opt-select-city': 'Select',
@@ -1356,6 +1675,8 @@ var translations = {
         'label-direction': 'Richtung:',
         'label-from': 'Von:',
         'label-to': 'Nach:',
+     'label-from': 'Von:',
+     'label-istanbul-address': 'Hotel oder Adresse:',
      'label-pickup': 'Abholort (Hotel oder Adresse):',
 'label-dropoff': 'Zielort (Hotel oder Adresse):',
         'label-date': 'Datum:',
@@ -1371,6 +1692,10 @@ var translations = {
         'submit-btn': 'Reservierungsanfrage per WhatsApp senden',
         'nav-booking': 'Buchung',
         'nav-prices': 'Preise',
+        'footer-nav-booking': 'Buchung',
+        'footer-nav-prices': 'Preise',
+        'hm-booking': 'Buchung', 'hm-prices': 'Preise', 'hm-about': 'Über Uns', 'hm-how': 'Wie es funktioniert', 'hm-faq': 'FAQ',
+        'label-antalya-address': 'Hotel oder Adresse:',
         'nav-about': 'Über Uns',
         'nav-faq': 'FAQ',
         'opt-select-city': 'Auswählen',
@@ -1426,6 +1751,8 @@ var translations = {
         'label-direction': 'Направление:',
         'label-from': 'Откуда:',
         'label-to': 'Куда:',
+     'label-from': 'Откуда:',
+     'label-istanbul-address': 'Отель или Адрес:',
      'label-pickup': 'Место посадки (Отель или Адрес):',
 'label-dropoff': 'Место высадки (Отель или Адрес):',
         'label-date': 'Дата:',
@@ -1441,6 +1768,10 @@ var translations = {
         'submit-btn': 'Отправить запрос через WhatsApp',
         'nav-booking': 'Бронирование',
         'nav-prices': 'Цены',
+        'footer-nav-booking': 'Бронирование',
+        'footer-nav-prices': 'Цены',
+        'hm-booking': 'Бронирование', 'hm-prices': 'Цены', 'hm-about': 'О нас', 'hm-how': 'Как это работает', 'hm-faq': 'FAQ',
+        'label-antalya-address': 'Отель или Адрес:',
         'nav-about': 'О Нас',
         'nav-faq': 'Вопросы',
         'opt-select-city': 'Выбрать',
@@ -1494,6 +1825,8 @@ var translations = {
         'trip-roundtrip': 'Ida y vuelta',
         'label-city': 'Ciudad:',
         'label-direction': 'Dirección:',
+  'label-from': 'Desde:',
+  'label-istanbul-address': 'Hotel o Dirección:',
   'label-pickup': 'Punto de recogida (Hotel o Dirección):',
 'label-dropoff': 'Punto de destino (Hotel o Dirección):',
         'label-from': 'Desde:',
@@ -1511,6 +1844,10 @@ var translations = {
         'submit-btn': 'Enviar Solicitud de Reserva por WhatsApp',
         'nav-booking': 'Reserva',
         'nav-prices': 'Precios',
+        'footer-nav-booking': 'Reserva',
+        'footer-nav-prices': 'Precios',
+        'hm-booking': 'Reserva', 'hm-prices': 'Precios', 'hm-about': 'Sobre Nosotros', 'hm-how': 'Cómo Funciona', 'hm-faq': 'Preguntas Frecuentes',
+        'label-antalya-address': 'Hotel o Dirección:',
         'nav-about': 'Nosotros',
         'nav-faq': 'FAQ',
         'opt-select-city': 'Seleccionar',
@@ -1570,6 +1907,11 @@ function changeCurr(curr) {
 }
 
 // Dil değiştir
+
+function toggleMenu() {
+    document.getElementById('hamburger-menu').classList.toggle('open');
+    document.getElementById('hamburger-overlay').classList.toggle('open');
+}
 function changeLang(lang) {
     currentLang = lang;
     localStorage.setItem('language', lang);
@@ -1626,14 +1968,28 @@ function updateDropdowns() {
     }
     
     if (city === 'istanbul') {
+        // İstanbul'da ilçe yok - sabit fiyat, adres kutusu göster
+        document.getElementById('istanbul-address-group').style.display = 'block';
+        document.getElementById('to-select-group').style.display = 'none';
+        document.getElementById('pickup-wrapper').style.setProperty('display','none','important');
+        document.getElementById('dropoff-wrapper').style.setProperty('display','none','important');
+
         if (dir === 'airport-to-location') {
             fromEl.innerHTML = '<option value="Istanbul Airport">İstanbul Havalimanı (IST)</option><option value="Sabiha Gokcen Airport">Sabiha Gökçen (SAW)</option>';
-            toEl.innerHTML = '<option value="Fatih">Fatih</option><option value="Sultanahmet">Sultanahmet</option><option value="Ayasofya">Ayasofya</option><option value="Balat">Balat</option><option value="Sisli">Şişli</option><option value="Karakoy">Karaköy</option><option value="Galata">Galata</option><option value="Taksim">Taksim</option><option value="Besiktas">Beşiktaş</option><option value="Ortakoy">Ortaköy</option><option value="Eminonu">Eminönü</option><option value="Sirkeci">Sirkeci</option><option value="Laleli">Laleli</option><option value="Beyoglu">Beyoğlu</option><option value="Nisantasi">Nişantaşı</option><option value="Aksaray">Aksaray</option><option value="Cihangir">Cihangir</option><option value="Pera">Pera</option><option value="Mecidiyekoy">Mecidiyeköy</option><option value="Zeytinburnu">Zeytinburnu</option><option value="Bakirkoy">Bakırköy</option>';
+            toEl.innerHTML = '<option value="Tüm İstanbul Bölgeleri">Tüm İstanbul Bölgeleri</option>';
+            document.getElementById('label-from').textContent = translations[currentLang]['label-from'] || 'Nereden:';
+            document.getElementById('label-istanbul-address').textContent = translations[currentLang]['label-istanbul-address'] || 'Otel veya Adres:';
         } else {
-            fromEl.innerHTML = '<option value="Fatih">Fatih</option><option value="Sultanahmet">Sultanahmet</option><option value="Ayasofya">Ayasofya</option><option value="Balat">Balat</option><option value="Sisli">Şişli</option><option value="Karakoy">Karaköy</option><option value="Galata">Galata</option><option value="Taksim">Taksim</option><option value="Besiktas">Beşiktaş</option><option value="Ortakoy">Ortaköy</option><option value="Eminonu">Eminönü</option><option value="Sirkeci">Sirkeci</option><option value="Laleli">Laleli</option><option value="Beyoglu">Beyoğlu</option><option value="Nisantasi">Nişantaşı</option><option value="Aksaray">Aksaray</option><option value="Cihangir">Cihangir</option><option value="Pera">Pera</option><option value="Mecidiyekoy">Mecidiyeköy</option><option value="Zeytinburnu">Zeytinburnu</option><option value="Bakirkoy">Bakırköy</option>';
-            toEl.innerHTML = '<option value="Istanbul Airport">İstanbul Havalimanı (IST)</option><option value="Sabiha Gokcen Airport">Sabiha Gökçen (SAW)</option>';
+            fromEl.innerHTML = '<option value="Istanbul Airport">İstanbul Havalimanı (IST)</option><option value="Sabiha Gokcen Airport">Sabiha Gökçen (SAW)</option>';
+            toEl.innerHTML = '<option value="Tüm İstanbul Bölgeleri">Tüm İstanbul Bölgeleri</option>';
+            document.getElementById('label-from').textContent = translations[currentLang]['label-from'] || 'Nereden:';
+            document.getElementById('label-istanbul-address').textContent = translations[currentLang]['label-istanbul-address'] || 'Otel veya Adres:';
         }
     } else if (city === 'antalya') {
+        // Antalya'da ilçe seçimi var, istanbul adres kutusunu gizle
+        document.getElementById('istanbul-address-group').style.display = 'none';
+        document.getElementById('to-select-group').style.display = 'block';
+        document.getElementById('label-from').textContent = document.getElementById('label-from').getAttribute('data-orig') || 'Nereden:';
         if (dir === 'airport-to-location') {
             fromEl.innerHTML = '<option value="Antalya Airport">Antalya Havalimanı (AYT)</option>';
             toEl.innerHTML = '<option value="Alanya">Alanya</option><option value="Alanya Oba">Alanya Oba</option><option value="Alanya Tosmur">Alanya Tosmur</option><option value="Alanya Avsallar">Alanya Avsallar</option><option value="Belek">Belek</option><option value="Bogazkent">Boğazkent</option><option value="Antalya Center">Antalya Center</option><option value="Camyuva">Çamyuva</option><option value="Incekum">İncekum</option><option value="Kemer">Kemer</option><option value="Beldibi">Beldibi</option><option value="Kizilagac">Kızılağaç</option><option value="Konakli">Konaklı</option><option value="Konyaalti">Konyaaltı</option><option value="Kundu">Kundu</option><option value="Lara">Lara</option><option value="Payallar">Payallar</option><option value="Okurcalar">Okurcalar</option><option value="Side">Side</option><option value="Sorgun">Sorgun</option><option value="Titreyengol">Titreyengöl</option><option value="Cenger">Çenger</option><option value="Kizilot">Kızılot</option>';
@@ -1644,9 +2000,30 @@ function updateDropdowns() {
     }
     
     updatePrice();
+    
+    // Adres kutularını göster/gizle
+    var airportRx = /havaliman|havaalan|airport|flughafen|аэропорт|aeropuerto/i;
+    var fromVal = document.getElementById('from').value;
+    var toVal = document.getElementById('to').value;
+    var fromIsAirport = airportRx.test(fromVal) || fromVal === '';
+    var toIsAirport = airportRx.test(toVal) || toVal === '';
+    var pickupWrap = document.getElementById('pickup-wrapper');
+    var dropoffWrap = document.getElementById('dropoff-wrapper');
+    var antalyaAddrGroup = document.getElementById('antalya-address-group');
+    
+    // Eski pickup/dropoff kutularını her zaman gizle
+    if (pickupWrap) pickupWrap.style.setProperty('display', 'none', 'important');
+    if (dropoffWrap) dropoffWrap.style.setProperty('display', 'none', 'important');
+    
+    // Antalya otel kutusu
+    if (antalyaAddrGroup) {
+        if (city === 'antalya' && (!fromIsAirport || !toIsAirport)) {
+            antalyaAddrGroup.style.display = 'block';
+        } else {
+            antalyaAddrGroup.style.display = 'none';
+        }
+    }
 }
-
-// Fiyat güncelle
 function updatePrice() {
     var city = document.getElementById('city').value;
     var dir = document.getElementById('direction').value;
@@ -1804,6 +2181,26 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
    // Kutulardaki otel/adres yazılarını al
     var pickupDetail = document.getElementById('pickup_address') ? document.getElementById('pickup_address').value : "";
     var dropoffDetail = document.getElementById('dropoff_address') ? document.getElementById('dropoff_address').value : "";
+    var istanbulAddress = document.getElementById('istanbul_address') ? document.getElementById('istanbul_address').value : "";
+    var antalyaAddress = document.getElementById('antalya_address') ? document.getElementById('antalya_address').value : "";
+    
+    // Antalya ise otel adresini ekle
+    if (city === 'antalya' && antalyaAddress) {
+        if (dir === 'airport-to-location') {
+            dropoffDetail = antalyaAddress;
+        } else {
+            pickupDetail = antalyaAddress;
+        }
+    }
+    
+    // İstanbul ise adres kutusunu kullan
+    if (city === 'istanbul' && istanbulAddress) {
+        if (dir === 'airport-to-location') {
+            dropoffDetail = istanbulAddress;
+        } else {
+            pickupDetail = istanbulAddress;
+        }
+    }
 
     // Dropdown ile otel adını yan yana birleştir
     var fromText = from + (pickupDetail ? " - " + pickupDetail : "");
@@ -1871,8 +2268,8 @@ document.getElementById('date').setAttribute('min', today);
                 <div>
                     <h3 style="color: #d4af37; margin-bottom: 20px;" id="footer-links-title">Hızlı Linkler</h3>
                     <ul style="list-style: none; line-height: 2.2;">
-                        <li><a href="#booking" style="color: #ccc; text-decoration: none;" id="nav-booking">Rezervasyon</a></li>
-                        <li><a href="transferien-prices.html" style="color: #ccc; text-decoration: none;" id="nav-prices">Fiyatlar</a></li>
+                        <li><a href="#booking" style="color: #ccc; text-decoration: none;" id="footer-nav-booking">Rezervasyon</a></li>
+                        <li><a href="transferien-prices.html" style="color: #ccc; text-decoration: none;" id="footer-nav-prices">Fiyatlar</a></li>
                         <li><a href="#about-title" style="color: #ccc; text-decoration: none;" id="nav-about">Hakkımızda</a></li>
                         <li><a href="#faq-title" style="color: #ccc; text-decoration: none;" id="nav-faq">SSS</a></li>
                     </ul>
@@ -1881,12 +2278,12 @@ document.getElementById('date').setAttribute('min', today);
                     <h3 style="color: #d4af37; margin-bottom: 20px;" id="footer-contact-title">İletişim</h3>
                     <ul style="list-style: none; line-height: 2.2; color: #ccc;">
                         <li>📱 +90 536 593 07 38</li>
-              <li>📩 <a href="mailto:info@transferien.com" style="color: #ccc; text-decoration: none;">info@transferien.com</a></li>
+              <li>📩 <a href="#" onclick="this.href='mailto:info@transferien.com'; return true;" style="color: #ccc; text-decoration: none;"><span class="__cf_email__" data-cfemail="a1c8cfc7cee1d5d3c0cfd2c7c4d3c8c4cf8fc2cecc">[email&#160;protected]</span></a></li>
                         <li>⏰ <span id="footer-service">7/24 Hizmet</span></li>
                         <li>🌍 İstanbul & Antalya</li>
                     </ul>
                 </div>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>
+      <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDnyRrbNNVrEBjKMsENX80zC9BqImeRUs&libraries=places"></script>
 
 <script>
   function initAutocomplete() {
@@ -1905,6 +2302,8 @@ document.getElementById('date').setAttribute('min', today);
         }
     }
 
+    var inputIstanbul = document.getElementById('istanbul_address');
+
     if(inputPickup) {
         var autoPickup = new google.maps.places.Autocomplete(inputPickup, options);
         autoPickup.addListener('place_changed', function() { notifyWhatsApp(inputPickup); });
@@ -1913,56 +2312,76 @@ document.getElementById('date').setAttribute('min', today);
         var autoDropoff = new google.maps.places.Autocomplete(inputDropoff, options);
         autoDropoff.addListener('place_changed', function() { notifyWhatsApp(inputDropoff); });
     }
+    if(inputIstanbul) {
+        var autoIstanbul = new google.maps.places.Autocomplete(inputIstanbul, options);
+        autoIstanbul.addListener('place_changed', function() { notifyWhatsApp(inputIstanbul); });
+    }
+    var inputAntalya = document.getElementById('antalya_address');
+    if(inputAntalya) {
+        var autoAntalya = new google.maps.places.Autocomplete(inputAntalya, options);
+        autoAntalya.addListener('place_changed', function() { notifyWhatsApp(inputAntalya); });
+    }
 
-    // 🌍 5 DİLİ TANIYAN AKILLI GİZLEME SİSTEMİ
+    // AKILLI GİZLEME SİSTEMİ
     function runSmartLogic() {
-        // TR, EN, DE, RU, ES dillerindeki havalimanı kelimeleri
-        var airportRegex = /havaliman|havaalan|airport|flughafen|аэропорт|aeropuerto/i;
+        var cityEl = document.getElementById('city');
+        var city = cityEl ? cityEl.value : '';
+        if (city === 'istanbul') return; // İstanbul için updateDropdowns halleder
 
-        if (fromSelect && inputPickup) {
+        var airportRegex = /havaliman|havaalan|airport|flughafen|аэропорт|aeropuerto/i;
+        var pickupWrapper = document.getElementById('pickup-wrapper');
+        var dropoffWrapper = document.getElementById('dropoff-wrapper');
+
+        if (fromSelect && pickupWrapper) {
             var fVal = fromSelect.value;
-            var pWrapper = inputPickup.closest('.form-group') || inputPickup.parentElement;
-            
-            // Eğer seçilen kelime bu 5 dilden biriyse kutuyu gizle
-            if (airportRegex.test(fVal) || fVal === "") {
-                pWrapper.style.setProperty('display', 'none', 'important');
-                if(inputPickup.value !== fVal) {
-                    inputPickup.value = fVal;
-                    notifyWhatsApp(inputPickup);
-                }
+            if (airportRegex.test(fVal) || fVal === '') {
+                pickupWrapper.style.setProperty('display', 'none', 'important');
+                if (inputPickup) inputPickup.value = '';
             } else {
-                pWrapper.style.setProperty('display', 'block', 'important');
+                pickupWrapper.style.setProperty('display', 'block', 'important');
             }
         }
 
-        if (toSelect && inputDropoff) {
+        if (toSelect && dropoffWrapper) {
             var tVal = toSelect.value;
-            var dWrapper = inputDropoff.closest('.form-group') || inputDropoff.parentElement;
-            
-            if (airportRegex.test(tVal) || tVal === "") {
-                dWrapper.style.setProperty('display', 'none', 'important');
-                if(inputDropoff.value !== tVal) {
-                    inputDropoff.value = tVal;
-                    notifyWhatsApp(inputDropoff);
+            if (airportRegex.test(tVal) || tVal === '') {
+                dropoffWrapper.style.setProperty('display', 'none', 'important');
+                if (inputDropoff) inputDropoff.value = '';
+            } else {
+                dropoffWrapper.style.setProperty('display', 'block', 'important');
+            }
+        }
+
+        // Antalya otel kutusu: bölge seçilince göster
+        var antalyaGroup = document.getElementById('antalya-address-group');
+        if (antalyaGroup && toSelect && fromSelect) {
+            var airportRegex2 = /havaliman|havaalan|airport|flughafen|аэропорт|aeropuerto/i;
+            var fromVal = fromSelect.value;
+            var toVal = toSelect.value;
+            var fromIsAirport = airportRegex2.test(fromVal) || fromVal === '';
+            var toIsAirport = airportRegex2.test(toVal) || toVal === '';
+            // pickup/dropoff wrapper'ları her zaman gizle - antalya-address-group kullanıyoruz
+            if (pickupWrapper) pickupWrapper.style.setProperty('display', 'none', 'important');
+            if (dropoffWrapper) dropoffWrapper.style.setProperty('display', 'none', 'important');
+            if (!fromIsAirport || !toIsAirport) {
+                antalyaGroup.style.display = 'block';
+                var labelEl = document.getElementById('label-antalya-address');
+                if (labelEl) {
+                    labelEl.textContent = fromIsAirport
+                        ? (translations[currentLang]['label-antalya-address'] || 'Varış Oteli / Adresi:')
+                        : (translations[currentLang]['label-antalya-address'] || 'Alınış Oteli / Adresi:');
                 }
             } else {
-                dWrapper.style.setProperty('display', 'block', 'important');
+                antalyaGroup.style.display = 'none';
             }
         }
     }
 
     if(fromSelect) fromSelect.addEventListener('change', runSmartLogic);
     if(toSelect) toSelect.addEventListener('change', runSmartLogic);
-
-    setInterval(runSmartLogic, 500);
     runSmartLogic();
-  }
-
-  google.maps.event.addDomListener(window, 'load', initAutocomplete);
+}
 </script>
 
 </body>
 </html>
-
-
-
